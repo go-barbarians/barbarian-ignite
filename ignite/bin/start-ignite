@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 #
-#Usage: start-ignite [OPTIONS]
+# Usage: start-ignite [OPTIONS]
 # Starts an IGFS server based on the supplied options.
 #     --conf_dir          The directoyr where the IGFS process will store its
 #                         configuration. The default is /ignite/config.
@@ -61,7 +61,7 @@ function create_ignite_logging() {
   cp /templates/ignite/$IGNITE_LOG_PROPS.template /ignite/config/$IGNITE_LOG_PROPS
 }
 
-function create_config() {
+function create_ignite_config() {
     rm -f $IGNITE_CONF_FILE
     echo "\
 <beans xmlns=\"http://www.springframework.org/schema/beans\"
@@ -286,7 +286,6 @@ function create_s3_site() {
 </property>
 </configuration>
 " >> $S3_SITE_FILE
-    cat $S3_SITE_FILE >&2
 }
 
 optspec=":hv-:"
@@ -334,4 +333,4 @@ S3_SITE_FILE="$CONF_DIR/s3-site.xml"
 export HADOOP_CLASSPATH=/ignite/config:/hadoop/share/hadoop/common/lib/*:/hadoop/share/hadoop/common/*:/hadoop/share/hadoop/tools/*:hadoop/share/hadoop/tools/lib/*
 export IGNITE_CUSTOM_CLASSPATH=$HADOOP_CLASSPATH
 
-create_ignite_logging && create_s3_site && create_config && exec /ignite/bin/ignite.sh -v
+create_ignite_logging && create_s3_site && create_ignite_config && exec /ignite/bin/ignite.sh -v
