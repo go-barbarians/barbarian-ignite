@@ -27,4 +27,5 @@ RUN set -x \
     && [ `id -g $IGFS_USER` -eq 1000 ] \
     && mkdir -p $IGFS_LOG_DIR \
     && chown -R "$IGFS_USER:$IGFS_USER" $IGFS_LOG_DIR \
-    && ln -s /opt/barbarian/ignite/config/ /etc/ignite
+    && ln -s /opt/barbarian/ignite/config/ /etc/ignite \
+    && rm -rf /opt/barbarian/hadoop/etc/hadoop
