@@ -74,7 +74,7 @@ spec:
                 name: aws-bucket
                 key: aws-s3-bucket
         volumeMounts:
-        - mountPath: /ignite/config
+        - mountPath: /opt/barbarian/ignite/config
           name: igfs-cfg-volume
         resources:
           requests:
