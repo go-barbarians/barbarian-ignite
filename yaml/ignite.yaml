@@ -39,6 +39,9 @@ spec:
       labels:
         app: ignite
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -52,11 +55,27 @@ spec:
       containers:
       - image: 535272059665.dkr.ecr.eu-west-1.amazonaws.com/ignite
         name: ignite
+        securityContext:
+          allowPrivilegeEscalation: false
+        env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-secret
+                key: access-key-id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-secret
+                key: secret-key
+          - name: AWS_S3_BUCKET
+            valueFrom:
+              secretKeyRef:
+                name: aws-bucket
+                key: aws-s3-bucket
         volumeMounts:
         - mountPath: /ignite/config
           name: igfs-cfg-volume
-        - mountPath: /etc/init
-          name: init-cfg-volume
         resources:
           requests:
             memory: "5Gi"
@@ -67,17 +86,17 @@ spec:
         command:
         - sh
         - -c
-        - "/ignite/bin/start-ignite \
-          --conf_dir=/ignite/config \
-          --server_port=10500 \
+        - "/opt/barbarian/control/start-ignite \
+          --conf_dir=/opt/barbarian/ignite/config \
           --log_level=INFO \
-          --zk_service=zk-cs.default.svc.cluster.local:2181"
+          --log_dir=/var/log/ignite \
+          --zk_service=zk-cs.default.svc.cluster.local"
         readinessProbe:
           exec:
             command:
             - sh
             - -c
-            - "/ignite/bin/ignite-ready 10500"
+            - "/opt/barbarian/control/ignite-ready 10500"
           initialDelaySeconds: 10
           timeoutSeconds: 5
         livenessProbe:
@@ -85,22 +104,9 @@ spec:
             command:
             - sh
             - -c
-            - "/ignite/bin/ignite-ready 10500"
+            - "/opt/barbarian/control/ignite-ready 10500"
           initialDelaySeconds: 10
           timeoutSeconds: 5
-      initContainers:
-      - name: install-aws-sh
-        image: busybox
-        command:
-        - wget
-        - "-O"
-        - "/init/aws.sh"
-        - http://internal-barbarian-config-119679307.eu-west-1.elb.amazonaws.com/ignite/init/aws.sh
-        volumeMounts:
-        - name: init-cfg-volume
-          mountPath: "/init"
       volumes:
       - name: igfs-cfg-volume
-        emptyDir: {}
-      - name: init-cfg-volume
         emptyDir: {}

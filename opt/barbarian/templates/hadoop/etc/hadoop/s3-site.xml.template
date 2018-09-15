@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+<property>
+    <name>fs.s3a.metadatastore.impl</name>
+    <value>org.apache.hadoop.fs.s3a.s3guard.DynamoDBMetadataStore</value>
+</property>
+
+<property>
+  <name>fs.s3a.s3guard.ddb.table</name>
+  <value>my-ddb-table-name</value>
+</property>
+
+<property>
+  <name>fs.s3a.s3guard.ddb.region</name>
+  <value>eu-west-1</value>
+</property>
+
+<property>
+  <name>fs.s3a.s3guard.ddb.table.create</name>
+  <value>true</value>
+</property>
+
+<property>
+  <name>fs.s3a.s3guard.ddb.table.capacity.read</name>
+  <value>3</value>
+</property>
+
+<property>
+  <name>fs.s3a.s3guard.ddb.table.capacity.write</name>
+  <value>3</value>
+</property>
+
+<property>
+  <name>fs.AbstractFileSystem.s3a.impl</name>
+  <value>org.apache.hadoop.fs.s3a.S3A</value>
+</property>
+
+<property>
+  <name>fs.s3a.impl</name>
+  <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+</property>
+
+<property>
+  <name>fs.s3a.access.key</name>
+  <value>zzzAWS_ACCESS_KEY_IDzzz</value>
+</property>
+
+<property>
+  <name>fs.s3a.secret.key</name>
+  <value>zzzAWS_SECRET_ACCESS_KEYzzz</value>
+</property>
+
+<property>
+  <name>fs.s3a.fast.upload</name>
+  <value>true</value>
+</property>
+
+<property>
+  <name>fs.s3a.fast.upload.buffer</name>
+  <value>disk</value>
+</property>
+
+<property>
+  <name>fs.s3a.multipart.size</name>
+  <value>100M</value>
+</property>
+
+<property>
+  <name>fs.s3a.fast.upload.active.blocks</name>
+  <value>8</value>
+</property>
+
+<property>
+  <name>fs.s3a.multipart.purge</name>
+  <value>true</value>
+</property>
+
+<property>
+  <name>ireland.endpoint</name>
+  <value>s3-eu-west-1.amazonaws.com</value>
+</property>
+
+<property>
+  <name>fs.s3a.endpoint</name>
+  <value>${ireland.endpoint}</value>
+</property>
+
+<property>
+  <name>fs.s3a.connection.ssl.enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <name>fs.s3a.multipart.purge.age</name>
+  <value>86400</value>
+</property>
+
+<property>
+  <name>fs.s3a.buffer.dir</name>
+  <value>/tmp</value>
+</property>
+
+<property>
+  <name>fs.s3a.aws.credentials.provider</name>
+  <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
+</property>
+</configuration>
