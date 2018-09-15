@@ -28,8 +28,9 @@ Launching this image is done using [kubectl](https://kubernetes.io/docs/tasks/to
 - A running Kubernetes cluster with sufficient resource to deploy the full platform
 - A running ZooKeeper ensemble
 - An AWS S3 bucket as secondary filesystem
-- Access keys for the S3 bucket
-- An (internal, firewalled) webserver hosting the access keys
+- Access keys for the S3 bucket (preferably IAM restricted)
+
+Ensure you have set up the necessary secrets using the script in [barbarian-tooling](https://github.com/go-barbarians/barbarian-tooling) - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET
 
 Launch a 2-node Ingite IGFS ensemble with ```kubectl create -f yaml/ignite.yaml```
 
