@@ -18,7 +18,7 @@ The latest release of the Ignite Docker image is based on the following Apache F
 
 ## Building
 
-**todo:** buildscripts missing
+Build by executing ```build-image.sh```
 
 ## Running
 
