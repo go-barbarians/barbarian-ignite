@@ -76,6 +76,10 @@ spec:
         volumeMounts:
         - mountPath: /opt/barbarian/ignite/config
           name: igfs-cfg-volume
+        - mountPath: /opt/barbarian/ignite/work
+          name: igfs-work-volume
+        - mountPath: /opt/barbarian/hadoop/etc/hadoop
+          name: hadoop-cfg-volume
         resources:
           requests:
             memory: "5Gi"
@@ -90,7 +94,7 @@ spec:
           --conf_dir=/opt/barbarian/ignite/config \
           --log_level=INFO \
           --log_dir=/var/log/ignite \
-          --zk_service=zk-cs.default.svc.cluster.local"
+          --zk_connect=zk-cs.default.svc.cluster.local"
         readinessProbe:
           exec:
             command:
@@ -109,4 +113,8 @@ spec:
           timeoutSeconds: 5
       volumes:
       - name: igfs-cfg-volume
+        emptyDir: {}
+      - name: hadoop-cfg-volume
+        emptyDir: {}
+      - name: igfs-work-volume
         emptyDir: {}

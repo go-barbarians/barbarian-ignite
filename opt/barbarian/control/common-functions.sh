@@ -5,7 +5,11 @@ function mk_log_dir() {
 function process_file() {
   rm -f $TARGET_PATH/$TARGET_FILE
   echo "Creating $TARGET_PATH/$TARGET_FILE configuration"
-  TEMPLATE=`cat /templates/$TARGET_PATH/$TARGET_FILE.template`
+  AWS_S3_BUCKET=`echo $AWS_S3_BUCKET | xargs`
+  AWS_ACCESS_KEY_ID=`echo $AWS_ACCESS_KEY_ID | xargs`
+  AWS_SECRET_ACCESS_KEY=`echo $AWS_SECRET_ACCESS_KEY | xargs`
+
+  TEMPLATE=`cat /opt/barbarian/templates/$TARGET_PATH/$TARGET_FILE.template`
   TEMPLATE="${TEMPLATE//zzzLOG_LEVELzzz/$LOG_LEVEL}"
   TEMPLATE="${TEMPLATE//zzzLOG_DIRzzz/$LOG_DIR}"
   TEMPLATE="${TEMPLATE//zzzZK_CONNECTzzz/$ZK_CONNECT}"

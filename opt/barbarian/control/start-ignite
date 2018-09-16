@@ -21,13 +21,7 @@
 #
 #     --log_dir           The log directory for the IGFS server. The default is /var/log/ignite.
 #
-#     --zk_service        The zookeeper ensemble kubernetes CNAME.
-#
-#     --aws_access_key_id The AWS Access key ID for the secondary fs
-#
-#     --aws_secret_key    The AWS Secret Key for the secondary fs
-#
-#     --aws_s3_bucket     The AWS S3 bucket for the secondary fs
+#     --zk_connect        The zookeeper ensemble kubernetes CNAME.
 
 USER=`whoami`
 HOST=`hostname -s`
@@ -45,13 +39,7 @@ Starts an IGFS server based on the supplied options.
 
      --log_dir           The log directory for the IGFS server. The default is /var/log/ignite.
 
-     --zk_service        The zookeeper ensemble public uri
-
-     --aws_access_key_id The AWS Access key ID for the secondary fs
-
-     --aws_secret_key    The AWS Secret Key for the secondary fs
-
-     --aws_s3_bucket     The AWS S3 bucket for the secondary fs
+     --zk_connect        The zookeeper ensemble public uri
 "
 }
 
@@ -85,23 +73,14 @@ while getopts "$optspec" optchar; do
                 conf_dir=*)
                     CONF_DIR=${OPTARG##*=}
                     ;;
-                zk_service=*)
-                    ZK_SERVICE=${OPTARG##*=}
+                zk_connect=*)
+                    ZK_CONNECT=${OPTARG##*=}
                     ;;
                 log_level=*)
                     LOG_LEVEL=${OPTARG##*=}
                     ;;
                 log_dir=*)
                     LOG_DIR=${OPTARG##*=}
-                    ;;
-                aws_access_key_id=*)
-                    AWS_ACCESS_KEY_ID=${OPTARG##*=}
-                    ;;
-                aws_secret_key=*)
-                    AWS_SECRET_ACCESS_KEY=${OPTARG##*=}
-                    ;;
-                aws_s3_bucket=*)
-                    AWS_S3_BUCKET=${OPTARG##*=}
                     ;;
                 *)
                     echo "Unknown option --${OPTARG}" >&2
@@ -130,4 +109,4 @@ S3_SITE_FILE="s3-site.xml"
 export HADOOP_CLASSPATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/*
 export IGNITE_CUSTOM_CLASSPATH=$HADOOP_CLASSPATH
 
-create_ignite_log4j && create_config_s3_site && create_config_ignite_default && exec /ignite/bin/ignite.sh
+create_ignite_log4j && create_config_s3_site && create_config_ignite_default && exec $IGNITE_HOME/bin/ignite.sh

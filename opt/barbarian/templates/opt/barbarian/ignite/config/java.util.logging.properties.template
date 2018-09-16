@@ -38,12 +38,12 @@ handlers=java.util.logging.ConsoleHandler, org.apache.ignite.logger.java.JavaLog
 # Note that handlers also have a separate level setting to limit messages
 # printed through it.
 #
-.level=INFO
+.level=zzzLOG_LEVELzzz
 
 #
 # Uncomment to allow debug messages for entire Ignite package.
 #
-org.apache.ignite.level=FINE
+#org.apache.ignite.level=FINE
 
 #
 # Uncomment this line to enable cache query execution tracing.
@@ -61,7 +61,7 @@ org.apache.ignite.level=FINE
 # into standard error stream (`System.err`).
 #
 java.util.logging.ConsoleHandler.formatter=org.apache.ignite.logger.java.JavaLoggerFormatter
-java.util.logging.ConsoleHandler.level=INFO
+java.util.logging.ConsoleHandler.level=zzzLOG_LEVELzzz
 
 #
 # File handler logs all messages into files with pattern `ignite-%{id8}.%g.log`
@@ -69,6 +69,6 @@ java.util.logging.ConsoleHandler.level=INFO
 #
 org.apache.ignite.logger.java.JavaLoggerFileHandler.formatter=org.apache.ignite.logger.java.JavaLoggerFormatter
 org.apache.ignite.logger.java.JavaLoggerFileHandler.pattern=ignite-%{id8}.%g.log
-org.apache.ignite.logger.java.JavaLoggerFileHandler.level=INFO
+org.apache.ignite.logger.java.JavaLoggerFileHandler.level=zzzLOG_LEVELzzz
 org.apache.ignite.logger.java.JavaLoggerFileHandler.limit=10485760
 org.apache.ignite.logger.java.JavaLoggerFileHandler.count=10
