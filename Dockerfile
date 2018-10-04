@@ -9,6 +9,8 @@ ENV IGFS_USER=hadoop \
     IGNITE_CUSTOM_CLASSPATH=$HADOOP_CLASSPATH
 
 COPY ./opt/barbarian /opt/barbarian
+COPY ./opt/barbarian/ignite /opt/barbarian/ignite
+
 # COPY ./opt/barbarian/hadoop/share/hadoop/hdfs/lib/xercesImpl-2.9.1.jar /opt/barbarian/hadoop/share/hadoop/tools/lib/
 # COPY ./opt/barbarian/hadoop/share/hadoop/tools/lib/*.jar /opt/barbarian/hadoop/share/hadoop/common/lib/
 

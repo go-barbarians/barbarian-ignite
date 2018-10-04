@@ -1,5 +1,26 @@
 version: '1.0'
 steps:
+  get_packages:
+    title: get packages
+    description: Gets the latest packages
+    image: ubuntu:16.04
+    commands:
+      - apt-get update && apt-get upgrade -y && apt-get install -y python-pip unzip
+      - pip install awscli
+      - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+      - aws configure set default.region eu-west-1
+      - aws s3 cp s3://mvn.barbarians.io/apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin.zip .
+      - unzip -o apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin.zip
+      - mkdir -p opt/barbarian
+      - mkdir -p opt/barbarian/ignite
+      - cp -R apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin/* opt/barbarian/ignite
+
+      # cleardown
+      - rm -f apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin.zip
+    entry_point:
+      - /bin/bash
+
   build_image:
     type: build
     description: Building the image...
