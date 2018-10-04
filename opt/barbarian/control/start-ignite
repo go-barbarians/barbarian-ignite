@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Copyright 2018 Barbarians.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,6 @@
 #
 # Usage: start-ignite
 # Starts an IGFS server.
-
-USER=`whoami`
-HOST=`hostname -s`
-DOMAIN=`hostname -d`
 
 function print_usage() {
 echo "\
