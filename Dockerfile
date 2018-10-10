@@ -6,10 +6,11 @@ ENV IGFS_USER=hadoop \
     IGNITE_HOME=/opt/barbarian/ignite \
     IGNITE_CONF_DIR=/opt/barbarian/ignite/config \
     HADOOP_CLASSPATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/* \
-    IGNITE_CUSTOM_CLASSPATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/*
+    IGNITE_CUSTOM_CLASSPATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/*:
+    USER_PATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/*:
 
 COPY ./opt/barbarian /opt/barbarian
-COPY ./opt/barbarian/ignite /opt/barbarian/ignite
+COPY opt/barbarian/ignite /opt/barbarian/ignite
 
 #COPY /opt/barbarian/hadoop/share/hadoop/hdfs/lib/xercesImpl-2.9.1.jar /opt/barbarian/hadoop/share/hadoop/tools/lib/
 #COPY /opt/barbarian/hadoop/share/hadoop/tools/lib/*.jar /opt/barbarian/hadoop/share/hadoop/common/lib/

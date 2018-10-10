@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Copyright 2018 Barbarians.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,18 +16,4 @@
 #
 # Usage: start-ignite
 # Starts an IGFS server.
-
-function print_usage() {
-echo "\
-Usage: start-ignite
-Starts an IGFS server.
-"
-}
-
-CONTROL_DIR=`dirname $0`
-source $CONTROL_DIR/common-functions.sh
-
-export HADOOP_CLASSPATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/*
-export IGNITE_CUSTOM_CLASSPATH=$HADOOP_CLASSPATH
-
-exec $IGNITE_HOME/bin/ignite.sh
+exec $IGNITE_HOME/bin/ignite.sh -v
