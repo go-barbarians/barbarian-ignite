@@ -10,14 +10,14 @@ steps:
       - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
       - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
       - aws configure set default.region eu-west-1
-      - aws s3 cp s3://mvn.barbarians.io/apache-ignite-fabric-$IGNITE_BUILD_NUMBER-bin.zip .
-      - unzip -o apache-ignite-fabric-$IGNITE_BUILD_NUMBER-bin.zip
+      - aws s3 cp s3://mvn.barbarians.io/apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin.zip .
+      - unzip -o apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin.zip
       - mkdir -p opt/barbarian
       - mkdir -p opt/barbarian/ignite
-      - cp -R apache-ignite-fabric-$IGNITE_BUILD_NUMBER-bin/* opt/barbarian/ignite
+      - cp -R apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin/* opt/barbarian/ignite
 
       # cleardown
-      - rm -f apache-ignite-fabric-$IGNITE_BUILD_NUMBER-bin.zip
+      - rm -f apache-ignite-hadoop-$IGNITE_BUILD_NUMBER-bin.zip
     entry_point:
       - /bin/bash
 
