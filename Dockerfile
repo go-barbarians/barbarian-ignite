@@ -1,4 +1,4 @@
-FROM dockerbarbarians/barbarian-base:unstable
+FROM dockerbarbarians/barbarian-base:latest
 
 ENV IGFS_USER=hadoop \
     IGFS_LOG_DIR=/var/log/ignite \
