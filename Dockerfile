@@ -6,7 +6,8 @@ ENV IGFS_USER=hadoop \
     IGNITE_HOME=/opt/barbarian/ignite \
     IGNITE_CONF_DIR=/opt/barbarian/ignite/config \
     HADOOP_CLASSPATH=/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/* \
-    IGNITE_CUSTOM_CLASSPATH=/etc/hadoop/conf/s3-site.xml:/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/*
+    IGNITE_CUSTOM_CLASSPATH=/etc/hadoop/conf/s3-site.xml:/opt/barbarian/ignite/config:/opt/barbarian/hadoop/share/hadoop/common/lib/*:/opt/barbarian/hadoop/share/hadoop/common/*:/opt/barbarian/hadoop/share/hadoop/tools/*:/opt/barbarian/hadoop/share/hadoop/tools/lib/* \
+    JVM_OPTS=-XX:+UnlockExperimentalVMOptions 
 
 COPY ./opt/barbarian /opt/barbarian
 COPY opt/barbarian/ignite /opt/barbarian/ignite
